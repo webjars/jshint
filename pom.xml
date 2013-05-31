@@ -54,7 +54,6 @@
                 <version>1.0-beta-4</version>
                 <executions>
                     <execution>
-                        <id>download-jshint-js</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>download-single</goal>
@@ -62,19 +61,7 @@
                         <configuration>
                             <url>${upstream.url}</url>
                             <fromFile>jshint-${upstreamVersion}.js</fromFile>
-                            <toDir>${destDir}</toDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download-jshint-rhino-js</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${upstream.url}</url>
-                            <fromFile>jshint-rhino-${upstreamVersion}.js</fromFile>
-                            <toDir>${destDir}</toDir>
+                            <toFile>${destDir}/jshint.js</toFile>
                         </configuration>
                     </execution>
                 </executions>
