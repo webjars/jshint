@@ -10,8 +10,8 @@
 
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>jshint</artifactId>
-    <version>2.1.2-SNAPSHOT</version>
+    <artifactId>com.github.jshint.jshint</artifactId>
+    <version>2.1.10-SNAPSHOT</version>
     <name>JSHint</name>
     <description>WebJar for JSHint</description>
     <url>http://webjars.org</url>
@@ -41,7 +41,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>2.1.2</upstreamVersion>
+        <upstreamVersion>2.1.10</upstreamVersion>
         <upstream.url>http://www.jshint.com/get/</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
@@ -66,13 +66,11 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.4.1</version>
             </plugin>
         </plugins>
     </build>
-
 </project>
