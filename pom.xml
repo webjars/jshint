@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>jshint</artifactId>
-    <version>2.1.11</version>
+    <version>2.1.12-SNAPSHOT</version>
     <name>JSHint</name>
     <description>WebJar for JSHint</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/jshint</url>
         <connection>scm:git:https://github.com/webjars/jshint.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/jshint.git</developerConnection>
-        <tag>jshint-2.1.11</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
