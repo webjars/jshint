@@ -8,12 +8,12 @@
         <version>7</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>jshint</artifactId>
-    <version>2.4.2-SNAPSHOT</version>
-    <name>JSHint</name>
-    <description>WebJar for JSHint</description>
+    <artifactId>jshint-parent</artifactId>
+    <version>2.4.1-1-SNAPSHOT</version>
+    <name>JSHint Parent</name>
+    <description>Parent WebJar for JSHint</description>
     <url>http://webjars.org</url>
 
     <licenses>
@@ -51,84 +51,61 @@
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>underscorejs</artifactId>
-            <version>1.5.2-1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>console-browserify</artifactId>
-            <version>0.1.6</version>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>node</module>
+        <module>web</module>
+    </modules>  
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
-                <executions>
-                    <execution>
-                        <id>download-archive</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${upstream.url}/archive</url>
-                            <fromFile>${upstreamVersion}.zip</fromFile>
-                            <toDir>${project.build.directory}</toDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>wagon-maven-plugin</artifactId>
+                    <version>1.0-beta-4</version>
+                    <executions>
+                        <execution>
+                            <id>download-archive</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>download-single</goal>
+                            </goals>
+                            <configuration>
+                                <url>${upstream.url}/archive</url>
+                                <fromFile>${upstreamVersion}.zip</fromFile>
+                                <toDir>${project.build.directory}</toDir>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
 
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+              <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
+                    <executions>
+                        <execution>
+                            <phase>process-resources</phase>
+                            <id>extract</id>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <configuration>
+                                <target>
+                                    <echo message="unzip archive" />
+                                    <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+                                </target>
+                            </configuration>
+                        </execution>
+                    </executions>
+              </plugin>
 
-                                <echo message="moving resources" />
-                                <move todir="${destDir}/node_modules/jshint">
-                                    <fileset dir="${extractDir}">
-                                        <!-- include only the files specifically required to embed jshint -->
-                                        <include name="package.json" />
-                                        <include name="data/" />
-                                        <include name="src/jshint.js" />
-                                        <include name="src/lex.js" />
-                                        <include name="src/messages.js" />
-                                        <include name="src/reg.js" />
-                                        <include name="src/state.js" />
-                                        <include name="src/style.js" />
-                                        <include name="src/vars.js" />
-                                    </fileset>
-                                </move>
-                                <move file="${extractDir}/dist/jshint.js" toDir="${destDir}" />
-                                <move file="${extractDir}/dist/jshint-rhino.js" toDir="${destDir}" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-          </plugin>
-
-          <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
-            </plugin>
-        </plugins>
+              <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-release-plugin</artifactId>
+                  <version>2.3.2</version>
+              </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
