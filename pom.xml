@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>jshint-parent</artifactId>
-    <version>2.6.3</version>
+    <version>2.6.4-SNAPSHOT</version>
     <name>JSHint Parent</name>
     <description>Parent WebJar for JSHint</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/jshint</url>
         <connection>scm:git:https://github.com/webjars/jshint.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/jshint.git</developerConnection>
-        <tag>jshint-parent-2.6.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
