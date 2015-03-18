@@ -61,6 +61,7 @@
                                         <include name="src/state.js" />
                                         <include name="src/style.js" />
                                         <include name="src/vars.js" />
+                                        <include name="src/options.js" />
                                     </fileset>
                                 </move>
                             </target>
