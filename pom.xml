@@ -45,10 +45,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>2.9.1</upstreamVersion>
         <upstream.url>https://github.com/jshint/jshint</upstream.url>
-        <extractDir>${project.build.directory}/jshint-${upstreamVersion}</extractDir>
-        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
+        <extractDir>${project.build.directory}/jshint-${version.unsnapshot}</extractDir>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
     </properties>
 
     <modules>
@@ -57,6 +56,22 @@
     </modules>  
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jamesward</groupId>
+                <artifactId>unsnapshot-maven-plugin</artifactId>
+                <version>0.1</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>unsnapshot</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -72,7 +87,7 @@
                             </goals>
                             <configuration>
                                 <url>${upstream.url}/archive</url>
-                                <fromFile>${upstreamVersion}.zip</fromFile>
+                                <fromFile>${version.unsnapshot}.zip</fromFile>
                                 <toDir>${project.build.directory}</toDir>
                             </configuration>
                         </execution>
@@ -92,7 +107,7 @@
                             <configuration>
                                 <target>
                                     <echo message="unzip archive" />
-                                    <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+                                    <unzip src="${project.build.directory}/${version.unsnapshot}.zip" dest="${project.build.directory}" />
                                 </target>
                             </configuration>
                         </execution>
